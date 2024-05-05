@@ -1,22 +1,32 @@
+import { useState } from "react";
 import Square from "./Square"
 
-export default function Board(){
+export default function Board() {
+    const [squares, useSquares] = useState(Array(9).fill(null));
+
+    function handleClick(idx: number) {
+        const nextSquare = squares.slice();
+        nextSquare[idx] = 'X';
+        useSquares(nextSquare);
+    }
+
+
     return (<>
-    <div className="board-row">
-        <Square value="1"></Square>
-        <Square value="2"></Square>
-        <Square value="3"></Square>
-    </div>
-    <div className="board-row">
-        <Square value="4"></Square>
-        <Square value="5"></Square>
-        <Square value="6"></Square>
-    </div>
-    <div className="board-row">
-        <Square value="7"></Square>
-        <Square value="8"></Square>
-        <Square value="9"></Square>
-    </div>
+        <div className="board-row">
+            <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+            <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
+            <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
+        </div>
+        <div className="board-row">
+            <Square value={squares[3]} onSquareClick={() => handleClick(3)}/>
+            <Square value={squares[4]} onSquareClick={() => handleClick(4)}/>
+            <Square value={squares[5]} onSquareClick={() => handleClick(5)}/>
+        </div>
+        <div className="board-row">
+            <Square value={squares[6]} onSquareClick={() => handleClick(6)}/>
+            <Square value={squares[7]} onSquareClick={() => handleClick(7)}/>
+            <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
+        </div>
     </>
 
     )
